@@ -9,14 +9,14 @@ nav{display:flex;gap:6px;position:sticky;top:0;background:#070d18;padding:6px 0}
 import{initializeApp}from"https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import{getDatabase,ref,get,set,onValue,serverTimestamp}from"https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 const firebaseConfig={apiKey:"AIzaSyD23rt6LjPpLfKtNnoT4Sb4DFN8XDWf8MQ",authDomain:"manssa-c72f5.firebaseapp.com",projectId:"manssa-c72f5",appId:"1:700342818242:web:140e444c4eb459a74af25b"};
-let db=null,dbFailed=false;
+let db=null,dbFailed=false;const failedDb=new Set();
 function setSyncState(state,text){const e=document.getElementById('sync-status');if(e){e.className='sync-status '+state;e.textContent=text}}
-function showDbError(err,path){dbFailed=true;console.error('[Firebase '+path+']',err);const detail=String((err&&err.code)||'')+' '+String((err&&err.message)||err||'');const denied=/permission_denied|permission denied|insufficient permission/i.test(detail);setSyncState('error',denied?'⚠️ رفضت قواعد Firebase الوصول؛ راجع قواعد Realtime Database.':'⚠️ تعذّر الاتصال بقاعدة البيانات؛ تحقق من رابطها وإعداداتها ثم أعد المحاولة.')}
+function showDbError(err,path){failedDb.add(path);dbFailed=true;console.error('[Firebase '+path+']',err);const code=String((err&&err.code)||'UNKNOWN_ERROR'),detail=code+' '+String((err&&err.message)||err||'');const denied=/permission_denied|permission denied|insufficient permission/i.test(detail);setSyncState('error',(denied?'⚠️ رفضت قواعد Firebase الوصول؛ راجع قواعد Realtime Database.':'⚠️ تعذّر الاتصال بقاعدة البيانات؛ تحقق من رابطها وإعداداتها ثم أعد المحاولة.')+' ('+code+' · '+path+')')}
 try{db=getDatabase(initializeApp(firebaseConfig))}catch(e){showDbError(e,'initialization')}
 const V=document.getElementById('v'),D=['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس'],D7=['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'],tabs=['الجدول','النظام','التلاميذ','المتابعة','جدول الدروس'];
 let tab=({schedule:0,system:1,lessons:4})[location.hash.slice(1)]||0,cfg={...DEF},sch={},sts={},logs={},names={},day=dayKey(new Date()),open={};
 const pendingDb=new Set(['pn','tn','tchn','config','schedule','names','students','log']);
-function watch(path,fn){if(!db)return;try{return onValue(R(path),snap=>{pendingDb.delete(path);if(!pendingDb.size&&!dbFailed)setSyncState('ok','✅ الاتصال بقاعدة البيانات جاهز؛ السجلات تتحدث تلقائيًا');fn(snap)},err=>showDbError(err,path))}catch(e){showDbError(e,path)}}
+function watch(path,fn){if(!db)return;try{return onValue(R(path),snap=>{pendingDb.delete(path);failedDb.delete(path);dbFailed=failedDb.size>0;if(!pendingDb.size&&!dbFailed)setSyncState('ok','✅ الاتصال بقاعدة البيانات جاهز؛ السجلات تتحدث تلقائيًا');fn(snap)},err=>showDbError(err,path))}catch(e){showDbError(e,path)}}
 const R=p=>{if(!db)throw new Error('Realtime Database is unavailable');return ref(db,'home/'+p)},rnd=()=>Math.random().toString(36).slice(2,10),base=location.href.replace(/[^/]*$/,'')+'student.html';
 const dbSet=async(path,value)=>{try{await set(R(path),value);return true}catch(e){showDbError(e,path);return false}};
 const wa=t=>window.open('https://wa.me/?text='+encodeURIComponent(t),'_blank');

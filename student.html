@@ -22,12 +22,12 @@ input,textarea{width:100%;padding:12px;border-radius:12px;border:1px solid var(-
 <script type="module">
 import{initializeApp}from"https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import{getDatabase,ref,get,set,onValue,serverTimestamp}from"https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
-let db=null,dbFailed=false;
+let db=null,dbFailed=false;const failedDb=new Set();
 function setSyncState(state,text){const e=document.getElementById('sync-status');if(e){e.className='sync-status '+state;e.textContent=text}}
-function showDbError(err,path){dbFailed=true;console.error('[Firebase '+path+']',err);const detail=String((err&&err.code)||'')+' '+String((err&&err.message)||err||'');const denied=/permission_denied|permission denied|insufficient permission/i.test(detail);setSyncState('error',denied?'⚠️ رفضت قواعد Firebase الوصول؛ أبلغ وليّ أمرك أو المعلم.':'⚠️ تعذّر الاتصال بقاعدة البيانات؛ تحقق من الاتصال ثم أعد المحاولة.')}
+function showDbError(err,path){failedDb.add(path);dbFailed=true;console.error('[Firebase '+path+']',err);const code=String((err&&err.code)||'UNKNOWN_ERROR'),detail=code+' '+String((err&&err.message)||err||'');const denied=/permission_denied|permission denied|insufficient permission/i.test(detail);setSyncState('error',(denied?'⚠️ رفضت قواعد Firebase الوصول؛ أبلغ وليّ أمرك أو المعلم.':'⚠️ تعذّر الاتصال بقاعدة البيانات؛ تحقق من الاتصال ثم أعد المحاولة.')+' ('+code+')')}
 try{db=getDatabase(initializeApp({apiKey:"AIzaSyD23rt6LjPpLfKtNnoT4Sb4DFN8XDWf8MQ",authDomain:"manssa-c72f5.firebaseapp.com",projectId:"manssa-c72f5",appId:"1:700342818242:web:140e444c4eb459a74af25b"}))}catch(e){showDbError(e,'initialization')}
 const dbSet=async(path,value)=>{try{if(!db)throw new Error('Realtime Database is unavailable');await set(ref(db,path),value);return true}catch(e){showDbError(e,path);return false}};
-const watch=(path,handler)=>{if(!db)return;try{return onValue(ref(db,path),snap=>{if(!dbFailed)setSyncState('ok','✅ الاتصال يعمل؛ تتم مزامنة المهام');handler(snap)},err=>showDbError(err,path))}catch(e){showDbError(e,path)}};
+const watch=(path,handler)=>{if(!db)return;try{return onValue(ref(db,path),snap=>{failedDb.delete(path);dbFailed=failedDb.size>0;if(!dbFailed)setSyncState('ok','✅ الاتصال يعمل؛ تتم مزامنة المهام');handler(snap)},err=>showDbError(err,path))}catch(e){showDbError(e,path)}};
 const ST=[
 ['الأرنب والنجوم','في غابةٍ هادئة عاش أرنبٌ صغير اسمه {n}، يحب السهر ليعدّ النجوم. وكان كل صباح يستيقظ متعبًا ولا يلحق بدرس الغابة. في ليلةٍ جاءته البومة الحكيمة وقالت: «حتى النجوم تنام نهارًا لتلمع في الليل، والجسم الصغير يكبر ويتعلم وهو نائم». ابتسم {n} ونام باكرًا، وفي الصباح استيقظ نشيطًا وأتقن درسه وفرح به أصدقاؤه. تصبح على خير يا {n}.'],
 ['النحلة المجتهدة','كانت نحلةٌ صغيرة اسمها {n} تؤجّل عملها إلى الغد، فتجمع القليل من الرحيق. قالت لها جدّتها: «العسل الحلو يُصنع بقطرةٍ كل يوم، لا بكومةٍ في آخر الأسبوع». بدأت {n} تؤدي عملها كل مساء بهدوء، وبعد أيامٍ امتلأت خليتها عسلًا وفخر بها الجميع. وهكذا الواجب: قليلٌ كل يوم يصنع نجاحًا كبيرًا. نومًا هانئًا يا {n}.'],
