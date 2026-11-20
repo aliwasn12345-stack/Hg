@@ -2,16 +2,23 @@
 <style>:root{--g:#f4c75b;--p:#101b2c;--l:#31445e}*{box-sizing:border-box}body{margin:0;background:#070d18;color:#f6f4ed;font-family:Tahoma,Arial,sans-serif;padding:14px;max-width:760px;margin:auto}h1{color:#ffdf83;font-size:21px}h3{color:var(--g);margin:6px 0}
 nav{display:flex;gap:6px;position:sticky;top:0;background:#070d18;padding:6px 0}nav button{flex:1;font-size:13px;padding:9px 3px}button{border:1px solid var(--l);border-radius:12px;padding:10px;font:inherit;background:#17263a;color:#f6f4ed}button.on,.go{background:linear-gradient(135deg,#fff0a7,#e8b83d);color:#211a08;font-weight:bold;border:0}
 .c{background:var(--p);border:1px solid var(--l);border-radius:14px;padding:13px;margin:10px 0}input,textarea{width:100%;background:#0b1422;border:1px solid #344761;border-radius:10px;color:#f6f4ed;padding:10px;font:inherit;margin:4px 0 10px}label{font-size:13px;color:#aab6c8}.r{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;padding:8px 0;border-bottom:1px solid #1d2c42}.sm{padding:7px 11px;font-size:13px}.p{display:none}.p.on{display:block}.lc{background:linear-gradient(160deg,#16253b,#0c1626);border:2px solid #9e813d;border-radius:18px;padding:14px;margin:12px 0}.lh{text-align:center;color:#ffe08a;font:700 18px Amiri,serif}.ld{text-align:center;background:linear-gradient(135deg,#fff0a7,#e8b83d);color:#211a08;font-weight:bold;border-radius:999px;padding:6px;margin:10px 0}.lr{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;background:#ffffff0d;margin:5px 0}.lr b{background:#e8b83d;color:#211a08;border-radius:50%;width:26px;height:26px;display:grid;place-items:center;font-size:13px}#tst{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:#20c997;color:#06231b;padding:10px 16px;border-radius:999px;font-weight:bold;z-index:9;max-width:92%}#slb{position:fixed;top:0;left:0;right:0;background:#2b5876;padding:12px;text-align:center;z-index:9;font-weight:bold}.nm.hot{color:#f4c75b;text-shadow:0 0 8px #f4c75b88}.nm.win{color:#ffd86b;text-shadow:0 0 10px #f4c75bcc}.sm.on{background:linear-gradient(135deg,#fff0a7,#e8b83d);color:#211a08}
-@media(prefers-color-scheme:light){body{background:#eef7f0;color:#1b3326}h1,h3{color:#1f6b3f}nav{background:#eef7f0}nav button{background:#e4f4e9;color:#1d5a37;border-color:#8fcca5}button.on,.go,.sm.on{background:linear-gradient(135deg,#9be3b6,#34a56a);color:#08301a}.c,.lc{background:#fff;border-color:#b8dfc4}input,textarea{background:#fff;color:#1b3326;border-color:#a9d8b9}label,small{color:#4f6b5a!important}.r{border-color:#dff1e5}.lh{color:#1f6b3f}.ld{background:linear-gradient(135deg,#9be3b6,#34a56a);color:#08301a}.lr{background:#f1f8f3}.lr b{background:#34a56a;color:#fff}#slb{background:#34a56a;color:#fff}a{color:#1f6b3f!important}.nm.hot{color:#c98a00;text-shadow:none}.nm.win{color:#b87500;text-shadow:none}}</style></head><body>
-<a href="index.html" style="color:#f4c75b;text-decoration:none;font-size:14px">→ العودة إلى الصف الذهبي</a><h1>🏠 النظام البيتي</h1><nav id="nv"></nav><div id="v"></div>
+@media(prefers-color-scheme:light){body{background:#eef7f0;color:#1b3326}h1,h3{color:#1f6b3f}nav{background:#eef7f0}nav button{background:#e4f4e9;color:#1d5a37;border-color:#8fcca5}button.on,.go,.sm.on{background:linear-gradient(135deg,#9be3b6,#34a56a);color:#08301a}.c,.lc{background:#fff;border-color:#b8dfc4}input,textarea{background:#fff;color:#1b3326;border-color:#a9d8b9}label,small{color:#4f6b5a!important}.r{border-color:#dff1e5}.lh{color:#1f6b3f}.ld{background:linear-gradient(135deg,#9be3b6,#34a56a);color:#08301a}.lr{background:#f1f8f3}.lr b{background:#34a56a;color:#fff}#slb{background:#34a56a;color:#fff}a{color:#1f6b3f!important}.nm.hot{color:#c98a00;text-shadow:none}.nm.win,.nm.gold{color:#b87500;text-shadow:none}.nm.diamond{color:#087c9f;text-shadow:none}}.sync-status{padding:8px 11px;margin:9px 0;border:1px solid #54715e;border-radius:12px;background:#10251a;color:#bce8c8;font-size:12px;line-height:1.6}.sync-status.pending{border-color:#7b6940;background:#241f12;color:#f1d78f}.sync-status.error{border-color:#9b4141;background:#35191b;color:#ffd0d0}.sync-status.ok{border-color:#438364;background:#10251a;color:#bce8c8}@media(prefers-color-scheme:light){.sync-status{background:#f1f8f3;color:#25573c;border-color:#a9d9ba}.sync-status.pending{background:#fff8e8;color:#765d2e;border-color:#e6d3a0}.sync-status.error{background:#fff0f0;color:#8b2e36;border-color:#e0a4a7}}</style></head><body>
+<a href="index.html" style="color:#f4c75b;text-decoration:none;font-size:14px">→ العودة إلى الصف الذهبي</a><h1>🏠 النظام البيتي</h1><nav id="nv"></nav><div id="sync-status" class="sync-status pending" role="status" aria-live="polite">⏳ جارٍ الاتصال بقاعدة البيانات…</div><div id="v"></div>
 <script src="home-core.js"></script>
 <script type="module">
 import{initializeApp}from"https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import{getDatabase,ref,get,set,onValue,serverTimestamp}from"https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
-const db=getDatabase(initializeApp({apiKey:"AIzaSyD23rt6LjPpLfKtNnoT4Sb4DFN8XDWf8MQ",authDomain:"manssa-c72f5.firebaseapp.com",projectId:"manssa-c72f5",appId:"1:700342818242:web:140e444c4eb459a74af25b"}));
+const firebaseConfig={apiKey:"AIzaSyD23rt6LjPpLfKtNnoT4Sb4DFN8XDWf8MQ",authDomain:"manssa-c72f5.firebaseapp.com",projectId:"manssa-c72f5",appId:"1:700342818242:web:140e444c4eb459a74af25b"};
+let db=null,dbFailed=false;
+function setSyncState(state,text){const e=document.getElementById('sync-status');if(e){e.className='sync-status '+state;e.textContent=text}}
+function showDbError(err,path){dbFailed=true;console.error('[Firebase '+path+']',err);const detail=String((err&&err.code)||'')+' '+String((err&&err.message)||err||'');const denied=/permission_denied|permission denied|insufficient permission/i.test(detail);setSyncState('error',denied?'⚠️ رفضت قواعد Firebase الوصول؛ راجع قواعد Realtime Database.':'⚠️ تعذّر الاتصال بقاعدة البيانات؛ تحقق من رابطها وإعداداتها ثم أعد المحاولة.')}
+try{db=getDatabase(initializeApp(firebaseConfig))}catch(e){showDbError(e,'initialization')}
 const V=document.getElementById('v'),D=['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس'],D7=['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'],tabs=['الجدول','النظام','التلاميذ','المتابعة','جدول الدروس'];
 let tab=({schedule:0,system:1,lessons:4})[location.hash.slice(1)]||0,cfg={...DEF},sch={},sts={},logs={},names={},day=dayKey(new Date()),open={};
-const R=p=>ref(db,'home/'+p),rnd=()=>Math.random().toString(36).slice(2,10),base=location.href.replace(/[^/]*$/,'')+'student.html';
+const pendingDb=new Set(['pn','tn','tchn','config','schedule','names','students','log']);
+function watch(path,fn){if(!db)return;try{return onValue(R(path),snap=>{pendingDb.delete(path);if(!pendingDb.size&&!dbFailed)setSyncState('ok','✅ الاتصال بقاعدة البيانات جاهز؛ السجلات تتحدث تلقائيًا');fn(snap)},err=>showDbError(err,path))}catch(e){showDbError(e,path)}}
+const R=p=>{if(!db)throw new Error('Realtime Database is unavailable');return ref(db,'home/'+p)},rnd=()=>Math.random().toString(36).slice(2,10),base=location.href.replace(/[^/]*$/,'')+'student.html';
+const dbSet=async(path,value)=>{try{await set(R(path),value);return true}catch(e){showDbError(e,path);return false}};
 const wa=t=>window.open('https://wa.me/?text='+encodeURIComponent(t),'_blank');
 const tot=i=>Object.values(logs[i]||{}).reduce((a,d)=>a+Object.values(d).reduce((b,x)=>b+(x.p||0),0),0);
 function nav(){document.getElementById('nv').innerHTML=tabs.map((t,i)=>'<button class="'+(i==tab?'on':'')+'" onclick="T('+i+')">'+t+'</button>').join('')}
@@ -20,7 +27,7 @@ const subs=i=>{const e=document.getElementById('d'+i);return e?e.value.split('\n
 function plan(i){const S2={};for(let k=0;k<5;k++)S2[k]=subs(k);return'📅 جدول يوم '+D7[i]+(i>4?' (مراجعة دروس الأحد)':'')+'\n\n'+genD(cfg,S2,i).map(t=>'▫️ '+m2t(t.from)+' '+t.title).join('\n')+'\n\n⭐ افتحوا الرابط الموحد واضغطوا «تم» عند إنجاز كل مهمة في وقتها:\n'+base}
 function draw(){nav();const di=new Date().getDay();let h='';
  if(tab==0)h='<div class="c"><button class="go" style="width:100%" onclick="ST()">📤 إرسال جدول اليوم للكروب</button></div>'+D.map((d,i)=>'<div class="c"><h3>'+d+'</h3><label>المواد (كل مادة في سطر)</label><textarea id="d'+i+'" rows="4">'+((sch[i]||[]).join('\n'))+'</textarea><button class="sm" onclick="SD('+i+')">📤 حفظ وإرسال جدول '+d+'</button></div>').join('')+'<div class="c"><h3>الجمعة والسبت</h3><small style="color:#aab6c8">عطلة رسمية: تُوزَّع دروس الأحد عليهما تلقائيًا للمراجعة.</small><br><br><button class="sm" onclick="SD(5)">📤 إرسال جدول الجمعة</button> <button class="sm" onclick="SD(6)">📤 إرسال جدول السبت</button></div><button class="go" style="width:100%" onclick="SS()">حفظ ونشر الجدول</button>';
- if(tab==1)h='<div class="c">'+[['wakeAm','أيام الصباحي: الاستيقاظ'],['amS','أيام الصباحي: تبدأ مهام ما بعد العودة'],['amE','أيام الصباحي: تنتهي المهام'],['pmMS','أيام العصري: مهام الصباح تبدأ'],['pmME','أيام العصري: مهام الصباح تنتهي'],['pmES','أيام العصري: مهام ما بعد العودة تبدأ'],['pmEE','أيام العصري: تنتهي المهام'],['sleep','ساعة النوم']].map(x=>'<label>'+x[1]+'</label><input type="time" id="c_'+x[0]+'" value="'+cfg[x[0]]+'">').join('')+'<label>رمز الأهل لتأكيد النوم (4 أرقام، اتركه فارغًا لإلغائه)</label><input id="c_pin" maxlength="4" inputmode="numeric" value="'+(cfg.pin||'')+'"><label><input type="checkbox" id="c_swap" '+(cfg.swap?'checked':'')+' style="width:auto"> عكس الدوامين (شباط: الأحد والاثنين عصري)</label><br><br><button class="go" onclick="SC()">حفظ</button></div><div class="c"><small>الدوام الحالي: الأحد والاثنين '+(cfg.swap?'عصري':'صباحي')+'، والثلاثاء إلى الخميس '+(cfg.swap?'صباحي':'عصري')+'. وقت الدوام يُستثنى تلقائيًا.</small></div>';
+ if(tab==1)h='<div class="c">'+[['wakeAm','وقت الاستيقاظ'],['bfAm','فطور الصباحي'],['bfPm','فطور العصري'],['bfWk','فطور العطلة'],['lunch','غداء الصباحي والعطلة'],['lunchPm','غداء العصري'],['dinner','العشاء'],['amS','الصباحي: تبدأ مهام ما بعد العودة'],['amE','الصباحي: تنتهي المهام'],['pmMS','العصري: تبدأ مهام الصباح'],['pmME','العصري: تنتهي مهام الصباح'],['pmES','العصري: تبدأ مهام ما بعد العودة'],['pmEE','العصري: تنتهي مهام ما بعد العودة'],['sleep','ساعة النوم']].map(x=>'<label>'+x[1]+'</label><input type="time" id="c_'+x[0]+'" value="'+cfg[x[0]]+'">').join('')+'<label>رمز الأهل لتأكيد النوم (4 أرقام، اتركه فارغًا لإلغائه)</label><input id="c_pin" maxlength="4" inputmode="numeric" value="'+(cfg.pin||'')+'"><label><input type="checkbox" id="c_swap" '+(cfg.swap?'checked':'')+' style="width:auto"> عكس الدوامين (شباط: الأحد والاثنين عصري)</label><br><br><button class="go" onclick="SC()">حفظ</button></div><div class="c"><small>الدوام الحالي: الأحد والاثنين '+(cfg.swap?'عصري':'صباحي')+'، والثلاثاء إلى الخميس '+(cfg.swap?'صباحي':'عصري')+'. وقت الدوام يُستثنى تلقائيًا.</small></div>';
  if(tab==2)h='<div class="c"><button class="go" style="width:100%" onclick="LK()">📤 إرسال الرابط الموحد لكروب الصف</button><br><br><button class="sm" onclick="CP()">نسخ الرابط</button><small style="display:block;margin-top:8px;color:#aab6c8">رابط واحد لا يتغير، يكتب فيه التلميذ اسمه الثلاثي مرة واحدة فقط، ويتحدّث محتواه يوميًا تلقائيًا.</small></div><div class="c"><button class="go" onclick="IM()">استيراد التلاميذ من الصف الذهبي</button><br><br><input id="nm" placeholder="اسم تلميذ جديد (ثلاثي)"><button class="go" onclick="AD()">＋ إضافة تلميذ</button></div><div class="c">'+Object.keys(sts).map(i=>'<div class="r"><span>'+nameHTML(i)+'</span><span>⭐ '+tot(i)+' <button class="sm" onclick="DL(\''+i+'\')">حذف</button></span></div>').join('')+'</div>';
  if(tab==3){const dd=new Date(day+'T12:00:00').getDay(),T=genD(cfg,sch,dd);
   h=sleepCard()+lbHTML()+pnHTML()+'<div class="c"><label>التاريخ (السجلات السابقة محفوظة)</label><input type="date" id="dt" value="'+day+'" onchange="DY(this.value)"></div><div class="c">'+Object.keys(sts).map(i=>{const Lg=(logs[i]||{})[day]||{};let p=0,n=0;Object.values(Lg).forEach(x=>{if(x.ok!==0)n++;p+=x.p||0});
@@ -32,23 +39,23 @@ function draw(){nav();const di=new Date().getDay();let h='';
  if(tab==4)h=lessonsHTML();
  V.innerHTML=h}
 window.OP=i=>{open[i]=!open[i];draw()};window.DY=v=>{day=v||day;draw()};
-async function save(){const o={};D.forEach((d,i)=>o[i]=subs(i));await set(R('schedule'),o)}
-window.SS=async()=>{await save();alert('تم الحفظ والنشر ✔')};
-window.SD=async i=>{await save();wa(plan(i))};
+async function save(){const o={};D.forEach((d,i)=>o[i]=subs(i));return dbSet('schedule',o)}
+window.SS=async()=>{if(await save())alert('تم الحفظ والنشر ✔')};
+window.SD=async i=>{if(await save())wa(plan(i))};
 window.ST=()=>SD(new Date().getDay());
-window.SC=async()=>{const o={};['wakeAm','amS','amE','pmMS','pmME','pmES','pmEE','sleep'].forEach(k=>o[k]=document.getElementById('c_'+k).value);o.swap=document.getElementById('c_swap').checked;o.pin=document.getElementById('c_pin').value.trim();await set(R('config'),o);alert('تم الحفظ ✔')};
+window.SC=async()=>{const o={};['wakeAm','bfAm','bfPm','bfWk','lunch','lunchPm','dinner','amS','amE','pmMS','pmME','pmES','pmEE','sleep'].forEach(k=>o[k]=document.getElementById('c_'+k).value);o.swap=document.getElementById('c_swap').checked;o.pin=document.getElementById('c_pin').value.trim();if(await dbSet('config',o))alert('تم الحفظ ✔')};
 window.LK=()=>wa('السلام عليكم، هذا الرابط الموحد لمتابعة مهام الصف الرابع اليومية.\nافتحوه واكتبوا الاسم الثلاثي مرة واحدة فقط، وبعدها يفتح مباشرة كل يوم:\n'+base);
 window.CP=async()=>{await navigator.clipboard.writeText(base);alert('تم نسخ الرابط')};
-async function sync(){for(const i in sts)for(const k of nkeys(sts[i].name))if(!names[k]){names[k]=i;await set(R('names/'+k),i)}}
-const mk=n=>set(R('students/m'+rnd()),{name:n});
-window.AD=async()=>{const e=document.getElementById('nm'),n=e.value.trim();if(!n)return;await mk(n);e.value=''};
-window.DL=async i=>{if(confirm('حذف '+sts[i].name+'؟'))await set(R('students/'+i),null)};
+async function sync(){for(const i in sts)for(const k of nkeys(sts[i].name))if(!names[k]){if(!await dbSet('names/'+k,i))return;names[k]=i}}
+const mk=n=>dbSet('students/m'+rnd(),{name:n});
+window.AD=async()=>{const e=document.getElementById('nm'),n=e.value.trim();if(!n)return;if(await mk(n))e.value=''};
+window.DL=async i=>{if(confirm('حذف '+sts[i].name+'؟'))await dbSet('students/'+i,null)};
 window.IM=async()=>{let L=[];
  try{L=JSON.parse(localStorage.getItem('golden_class_v2')||'{}').students||[]}catch(e){}
  if(!L.length)try{const v=await new Promise((res,rej)=>{const r=indexedDB.open('golden_class_db',1);r.onupgradeneeded=()=>r.result.createObjectStore('kv');r.onerror=()=>rej();r.onsuccess=()=>{try{const g=r.result.transaction('kv').objectStore('kv').get('golden_class_v2');g.onsuccess=()=>res(g.result);g.onerror=()=>rej()}catch(e){rej()}}});L=JSON.parse(v||'{}').students||[]}catch(e){}
- if(!L.length)try{const x=await get(ref(db,'backups/goldenClassData/savedContent/students'));L=x.val()||[];if(!Array.isArray(L))L=Object.values(L)}catch(e){}
+ if(!L.length)try{const x=await get(R('backups/goldenClassData/savedContent/students'));L=x.val()||[];if(!Array.isArray(L))L=Object.values(L)}catch(e){}
  if(!L.length)return alert('لم أجد تلاميذ. أضفهم يدويًا.');let n=0;
- for(const s of L)if(s&&s.id&&s.name&&!sts[s.id]){await set(R('students/'+s.id),{name:s.name});n++}alert('تم استيراد '+n+' تلميذ')};
+ for(const s of L)if(s&&s.id&&s.name&&!sts[s.id]){if(!await dbSet('students/'+s.id,{name:s.name}))return;n++}alert('تم استيراد '+n+' تلميذ')};
 
 /* ===== أدوات مساعدة ===== */
 const tm=t=>new Date(t).toLocaleTimeString('ar',{hour:'2-digit',minute:'2-digit'});
@@ -90,18 +97,18 @@ window.LC=async i=>{try{await document.fonts.load('700 30px Cairo');await docume
 
 /* ===== الترتيب والملاحظات ===== */
 let lb='week',pn={},tn={},tch={};
-const nmc=t=>t>=600?'win':t>=50?'hot':'';
-const nameHTML=i=>{const t=tot(i);return'<b class="nm '+nmc(t)+'">'+(t>=600?'🏆 ':'')+sts[i].name+'</b>'};
+const nmc=t=>t>=600?'diamond':t>=500?'gold':t>=50?'hot':'';
+const nameHTML=i=>{const t=tot(i);return'<b class="nm '+nmc(t)+'">'+(t>=600?'💎 ':t>=500?'👑 ':'')+sts[i].name+'</b>'};
 function sumRange(i,f){let s=0;const L=logs[i]||{};for(const d in L)if(f(d))s+=Object.values(L[d]).reduce((a,x)=>a+(x.p||0),0);return s}
 function lbHTML(){const td=new Date(),tk=dayKey(td),mo=tk.slice(0,7),ws=dayKey(new Date(td.getTime()-6*864e5)),f=lb==='week'?d=>d>=ws&&d<=tk:lb==='month'?d=>d.slice(0,7)===mo:()=>true;
  const R=Object.keys(sts).map(i=>({i,p:sumRange(i,f)})).sort((a,b)=>b.p-a.p);
  return'<div class="c"><h3>🏆 الترتيب</h3><div style="display:flex;gap:6px;margin-bottom:8px">'+[['week','الأسبوع'],['month','الشهر'],['all','الكل']].map(x=>'<button class="sm '+(lb==x[0]?'on':'')+'" onclick="LB(\''+x[0]+'\')">'+x[1]+'</button>').join('')+'</div>'+
-  (R.map((x,k)=>'<div class="r"><span>'+(['🥇','🥈','🥉'][k]||(k+1)+'.')+' '+nameHTML(x.i)+'</span><span>⭐ '+x.p+(lb==='all'?' / 600':'')+'</span></div>').join('')||'<small>لا تلاميذ بعد</small>')+'<small style="display:block;margin-top:8px;color:#aab6c8">الفوز عند 600 نقطة 🏆 — يتلوّن الاسم عند 50 نقطة.</small></div>'}
+  (R.map((x,k)=>'<div class="r"><span>'+(['🥇','🥈','🥉'][k]||(k+1)+'.')+' '+nameHTML(x.i)+'</span><span>⭐ '+x.p+(lb==='all'?' / 600':'')+'</span></div>').join('')||'<small>لا تلاميذ بعد</small>')+'<small style="display:block;margin-top:8px;color:#aab6c8">الذهبي من 500 نقطة 👑 — الماسي من 600 💎 — يتلوّن الاسم عند 50 نقطة.</small></div>'}
 function pnHTML(){const A=[];for(const i in pn)for(const k in pn[i]){const x=pn[i][k];A.push({n:(sts[i]||{}).name||'',t:x.t||+k,k:x.k,x:x.x})}A.sort((a,b)=>b.t-a.t);
  return'<div class="c"><h3>📝 ملاحظات أولياء الأمور</h3>'+(A.slice(0,12).map(o=>'<div class="r"><span><b>'+o.n+'</b> <small>'+new Date(o.t).toLocaleDateString('ar')+'</small></span><span style="color:'+(o.k==='اتصال تربوي'?'#d98a00':'inherit')+'">'+o.k+': '+o.x+'</span></div>').join('')||'<small>لا ملاحظات بعد.</small>')+'</div>'}
 window.LB=k=>{lb=k;draw()};
-window.TC=async i=>{await set(R('tchn/'+i),document.getElementById('tc_'+i).value.trim());tst('تم حفظ ملاحظتك')};
-onValue(R('pn'),v=>{pn=v.val()||{};tab==3&&draw()});onValue(R('tn'),v=>{tn=v.val()||{};tab==3&&draw()});onValue(R('tchn'),v=>{tch=v.val()||{}});
-onValue(R('config'),v=>{cfg={...DEF,...(v.val()||{})};draw()});onValue(R('schedule'),v=>{sch=v.val()||{};draw()});
-onValue(R('names'),v=>{names=v.val()||{};sync()});onValue(R('students'),v=>{sts=v.val()||{};draw();sync()});onValue(R('log'),v=>{logs=v.val()||{};notify();tab>1&&draw()});
+window.TC=async i=>{if(await dbSet('tchn/'+i,document.getElementById('tc_'+i).value.trim()))tst('تم حفظ ملاحظتك')};
+watch('pn',v=>{pn=v.val()||{};tab==3&&draw()});watch('tn',v=>{tn=v.val()||{};tab==3&&draw()});watch('tchn',v=>{tch=v.val()||{}});
+watch('config',v=>{cfg={...DEF,...(v.val()||{})};draw()});watch('schedule',v=>{sch=v.val()||{};draw()});
+watch('names',v=>{names=v.val()||{};sync()});watch('students',v=>{sts=v.val()||{};draw();sync()});watch('log',v=>{logs=v.val()||{};notify();tab>1&&draw()});
 </script></body></html>

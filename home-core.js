@@ -27,11 +27,20 @@ function gen(c,d,di){
  const inW=(f,t)=>W.some(w=>f>=w[0]&&t<=w[1]);
  const add=(id,title,f,t,p,x,force)=>{if(force||inW(f,t))T.push({id,title,from:f,to:t,pts:p,...x})};
  const S0=SCH[sh==='pm'?'pm':'am'];
- if(sh==='am'){const w=t2m(c.wakeAm);add('wake','استيقظت من النوم',w,w+15,5,0,1)}
- if(!wk){add('go','انطلقت إلى مدرستي 🏫',S0[0]-30,S0[0]+15,3,0,1);add('back','عدت إلى البيت 🏠',S0[1],S0[1]+30,3,0,1);busy.push([S0[1],S0[1]+30])}
+ const breakfast=wk?t2m(c.bfWk):sh==='am'?t2m(c.bfAm):t2m(c.bfPm),wake=wk?Math.max(0,breakfast-60):t2m(c.wakeAm);
+ add('wake','استيقظ ورتب فراشك',wake,wake+10,5,{kind:'routine'},1);
+ const hygieneEnd=Math.min(wake+20,breakfast);if(hygieneEnd>wake+10)add('hygiene','نظافة شخصية وتنظيف الأسنان',wake+10,hygieneEnd,3,{kind:'routine'},1);
+ add('breakfast','تناول وجبة الفطور',breakfast,breakfast+20,3,{kind:'routine'},1);
+ if(!wk){const goAt=Math.min(S0[0],Math.max(S0[0]-30,breakfast+25));add('bag','تجهيز الحقيبة والاستعداد للمدرسة',Math.max(0,goAt-5),goAt,3,{kind:'routine'},1);if(goAt<S0[0])add('go','انطلقت إلى مدرستي 🏫',goAt,S0[0],3,{kind:'routine'},1);add('back','عدت إلى البيت 🏠',S0[1],S0[1]+30,3,{kind:'routine'},1);busy.push([S0[1],S0[1]+30])}
+ const lunch=wk||sh==='am'?t2m(c.lunch):t2m(c.lunchPm);add('lunch','تناول وجبة الغداء',lunch,lunch+30,3,{kind:'routine'},1);
+ const dinner=t2m(c.dinner);add('dinner','تناول وجبة العشاء',dinner,dinner+30,3,{kind:'routine'},1);
  busy.push([sl-30,sl+60]);
- const pre=wk?'مراجعة درس ':'تحضير درس ',pools=sh==='pm'?[d.mor,d.eve]:[d.eve];let k=0;
- W.forEach((w,wi)=>{(pools[wi]||[]).filter(s=>!isAct(s)).forEach(s=>{add('h'+k++,pre+s,w[0],w[1],6,{hw:1,kind:'study'})})});
+ const pre=wk?'مراجعة درس ':'تحضير درس ',pools=sh==='pm'?[d.mor,d.eve]:[d.eve],blocked=[[breakfast,breakfast+20],[lunch,lunch+30],[dinner,dinner+30],[sl-30,sl+60],...busy];let k=0;
+ W.forEach((w,wi)=>{const subjects=(pools[wi]||[]).filter(s=>!isAct(s));if(!subjects.length)return;
+  let spans=[w.slice()];blocked.sort((a,b)=>a[0]-b[0]).forEach(([a,b])=>{spans=spans.flatMap(([x,y])=>b<=x||a>=y?[[x,y]]:[...(a>x?[[x,a]]:[]),...(b<y?[[b,y]]:[])])});
+  spans=spans.filter(([a,b])=>b-a>=15);const total=spans.reduce((n,[a,b])=>n+b-a,0),gap=subjects.length>1?Math.min(10,Math.floor(total/(subjects.length*4))):0,dur=Math.max(15,Math.min(60,Math.floor((total-gap*(subjects.length-1))/subjects.length)));let si=0,cursor=spans[0]?.[0]||w[0];
+  subjects.forEach(subject=>{while(si<spans.length){const from=Math.max(cursor,spans[si][0]),to=from+dur;if(to<=spans[si][1]){add('h'+k++,pre+subject,from,to,6,{hw:1,kind:'study'});cursor=to+gap;return}si++;if(si<spans.length)cursor=spans[si][0]} });
+ });
  add('sleep','أنا نائم الآن 😴',sl-30,sl+30,20,{pin:1},1);
  return T.sort((a,b)=>a.from-b.from)}
 /* نقاط: ضمن النافذة كاملة، وبعد انتهائها تُغلق المهمة */
