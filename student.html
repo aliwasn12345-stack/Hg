@@ -25,7 +25,7 @@ import{getDatabase,ref,get,set,onValue,serverTimestamp}from"https://www.gstatic.
 let db=null,dbFailed=false;const failedDb=new Set();
 function setSyncState(state,text){const e=document.getElementById('sync-status');if(e){e.className='sync-status '+state;e.textContent=text}}
 function showDbError(err,path){failedDb.add(path);dbFailed=true;console.error('[Firebase '+path+']',err);const code=String((err&&err.code)||'UNKNOWN_ERROR'),detail=code+' '+String((err&&err.message)||err||'');const denied=/permission_denied|permission denied|insufficient permission/i.test(detail);setSyncState('error',(denied?'⚠️ رفضت قواعد Firebase الوصول؛ أبلغ وليّ أمرك أو المعلم.':'⚠️ تعذّر الاتصال بقاعدة البيانات؛ تحقق من الاتصال ثم أعد المحاولة.')+' ('+code+')')}
-try{db=getDatabase(initializeApp({apiKey:"AIzaSyD23rt6LjPpLfKtNnoT4Sb4DFN8XDWf8MQ",authDomain:"manssa-c72f5.firebaseapp.com",projectId:"manssa-c72f5",appId:"1:700342818242:web:140e444c4eb459a74af25b"}))}catch(e){showDbError(e,'initialization')}
+try{db=getDatabase(initializeApp({apiKey:"AIzaSyD23rt6LjPpLfKtNnoT4Sb4DFN8XDWf8MQ",authDomain:"manssa-c72f5.firebaseapp.com",projectId:"manssa-c72f5",databaseURL:"https://manssa-c72f5-default-rtdb.firebaseio.com",appId:"1:700342818242:web:140e444c4eb459a74af25b"}))}catch(e){showDbError(e,'initialization')}
 const dbSet=async(path,value)=>{try{if(!db)throw new Error('Realtime Database is unavailable');await set(ref(db,path),value);return true}catch(e){showDbError(e,path);return false}};
 const watch=(path,handler)=>{if(!db)return;try{return onValue(ref(db,path),snap=>{failedDb.delete(path);dbFailed=failedDb.size>0;if(!dbFailed)setSyncState('ok','✅ الاتصال يعمل؛ تتم مزامنة المهام');handler(snap)},err=>showDbError(err,path))}catch(e){showDbError(e,path)}};
 const ST=[
