@@ -8,7 +8,7 @@ nav{display:flex;gap:6px;position:sticky;top:0;background:#070d18;padding:6px 0}
 <script type="module">
 import{initializeApp}from"https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import{getDatabase,ref,get,set,onValue,serverTimestamp}from"https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
-const firebaseConfig={apiKey:"AIzaSyD23rt6LjPpLfKtNnoT4Sb4DFN8XDWf8MQ",authDomain:"manssa-c72f5.firebaseapp.com",projectId:"manssa-c72f5",appId:"1:700342818242:web:140e444c4eb459a74af25b"};
+const firebaseConfig={apiKey:"AIzaSyD23rt6LjPpLfKtNnoT4Sb4DFN8XDWf8MQ",authDomain:"manssa-c72f5.firebaseapp.com",projectId:"manssa-c72f5",databaseURL:"https://manssa-c72f5-default-rtdb.firebaseio.com",appId:"1:700342818242:web:140e444c4eb459a74af25b"};
 let db=null,dbFailed=false;const failedDb=new Set();
 function setSyncState(state,text){const e=document.getElementById('sync-status');if(e){e.className='sync-status '+state;e.textContent=text}}
 function showDbError(err,path){failedDb.add(path);dbFailed=true;console.error('[Firebase '+path+']',err);const code=String((err&&err.code)||'UNKNOWN_ERROR'),detail=code+' '+String((err&&err.message)||err||'');const denied=/permission_denied|permission denied|insufficient permission/i.test(detail);setSyncState('error',(denied?'⚠️ رفضت قواعد Firebase الوصول؛ راجع قواعد Realtime Database.':'⚠️ تعذّر الاتصال بقاعدة البيانات؛ تحقق من رابطها وإعداداتها ثم أعد المحاولة.')+' ('+code+' · '+path+')')}
