@@ -628,7 +628,7 @@ const _go=window.go;window.go=function(id){_go(id);try{localStorage.setItem('gol
 const W=['العلم نورٌ، والجهل ظلام.','من جدّ وجد، ومن زرع حصد.','خيرُ الناس أنفعُهم للناس.','اطلبوا العلم من المهد إلى اللحد.','الوقتُ كالسيف إن لم تقطعه قطعك.','لا تؤجّل عمل اليوم إلى الغد.','العقل زينة، والأدب تاجٌ للعقل.','القناعة كنزٌ لا يفنى.','تعلّم فإن العلم زينٌ لأهله.','الصبر مفتاح الفرج.','من سار على الدرب وصل.','رُبّ كلمةٍ طيبة غيّرت حياة إنسان.','المعلّم شمعةٌ تحترق لتضيء للآخرين.','اقرأ فإن القراءة غذاء العقل.','الأخلاق أساس نجاح الأمم.','ما ضاع حقٌّ وراءه مطالب.','كن جميلاً ترَ الوجود جميلاً.','التواضع يرفع صاحبه.','خطوةٌ كل يوم تصنع المتفوّقين.','النجاح ثمرة المثابرة.'];
 let wi=Math.floor(Date.now()/864e5)%W.length;
 const cb=document.createElement('div');cb.id='clockbar';
-cb.innerHTML='<div><div id="ck-time">--:--:--</div><div id="ck-date"></div></div><div id="ck-wis"></div><button class="ck-btn" onclick="openAlerts()">🚨 تنبيهات التلاميذ<b id="ck-n">0</b></button><button class="ck-btn" onclick="dailyCard()">📤 بطاقة الحالات (حرجة ومتوسطة)</button>';
+cb.innerHTML='<div><div id="ck-time">--:--:--</div><div id="ck-date"></div></div><div id="ck-wis"></div><button class="ck-btn" onclick="openAlerts()">🚨 تنبيهات التلاميذ<b id="ck-n">0</b></button><button class="ck-btn" onclick="dailyCard()">📤 بطاقة الحالات (حرجة ومتوسطة)</button><button id="rc-btn" class="ck-btn" onclick="restoreCenter()">☁️ استرجاع سحابي</button>';
 document.querySelector('.topbar').after(cb);
 function tick(){const d=new Date();$('ck-time').textContent=new Intl.DateTimeFormat('ar-IQ',{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:true}).format(d);$('ck-date').textContent=new Intl.DateTimeFormat('ar-IQ',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).format(d)}
 function wis(){const e=$('ck-wis');e.style.opacity=0;setTimeout(()=>{e.textContent='❝ '+W[wi++%W.length]+' ❞';e.style.opacity=1},600)}
@@ -1211,7 +1211,7 @@ window.restoreCenter=async function(){modal('<h3>♻️ استرجاع النس�
  if(!navigator.onLine||!window.listAutoBackups){$('rc').innerHTML=h+'<p class="section-note">النسخ التلقائية السحابية تحتاج اتصالاً بالإنترنت.</p>';return}
  try{const l=await window.listAutoBackups();h+='<h4>🗓️ النسخ التلقائية</h4>'+(l.length?l.map(x=>`<div class="lot-row"><span>${x.k} — ${x.n} تلميذ</span><button class="secondary" onclick="closeModal();restoreAutoKey('${x.k}')">استعادة</button></div>`).join(''):'<p class="section-note">لا توجد نسخ تلقائية بعد (تُنشأ أسبوعياً بعد أول حفظ سحابي).</p>')}catch(e){h+='<p class="section-note">تعذّر جلب النسخ التلقائية.</p>'}
  if($('rc'))$('rc').innerHTML=h};
-const cb=$('clockbar');if(cb&&!$('rc-btn'))cb.insertAdjacentHTML('beforeend','<button id="rc-btn" class="ck-btn" onclick="restoreCenter()">♻️ استرجاع</button>');
+const cb=$('clockbar');if(cb&&!$('rc-btn'))cb.insertAdjacentHTML('beforeend','<button id="rc-btn" class="ck-btn" onclick="restoreCenter()">☁️ استرجاع سحابي</button>');
 })();
 </script>
 <style id="v13-style">
