@@ -1,0 +1,78 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "authMap": {
+      ".read": "auth != null && auth.token.email_verified == true && auth.token.email == 'aliwasn12345@gmail.com'",
+      "$uid": {
+        ".read": "auth != null && auth.token.email_verified == true && (auth.token.email == 'aliwasn12345@gmail.com' || auth.uid == $uid)",
+        ".write": "auth != null && auth.token.email_verified == true && auth.token.email == 'aliwasn12345@gmail.com'"
+      }
+    },
+    "accessRequests": {
+      ".read": "auth != null && auth.token.email_verified == true && auth.token.email == 'aliwasn12345@gmail.com'",
+      "$uid": {
+        ".read": "auth != null && auth.token.email_verified == true && (auth.token.email == 'aliwasn12345@gmail.com' || auth.uid == $uid)",
+        ".write": "auth != null && auth.token.email_verified == true && (auth.token.email == 'aliwasn12345@gmail.com' || auth.uid == $uid)"
+      }
+    },
+    "home": {
+      "config": {
+        ".read": "auth != null && auth.token.email_verified == true && (auth.token.email == 'aliwasn12345@gmail.com' || (root.child('authMap').child(auth.uid).child('studentId').val() != null && !data.child('pin').exists()))",
+        ".write": "auth != null && auth.token.email_verified == true && auth.token.email == 'aliwasn12345@gmail.com'"
+      },
+      "parentPin": {
+        ".read": "auth != null && auth.token.email_verified == true && auth.token.email == 'aliwasn12345@gmail.com'",
+        ".write": "auth != null && auth.token.email_verified == true && auth.token.email == 'aliwasn12345@gmail.com'"
+      },
+      "schedule": {
+        ".read": "auth != null && auth.token.email_verified == true && (auth.token.email == 'aliwasn12345@gmail.com' || root.child('authMap').child(auth.uid).child('studentId').val() != null)",
+        ".write": "auth != null && auth.token.email_verified == true && auth.token.email == 'aliwasn12345@gmail.com'"
+      },
+      "students": {
+        ".read": "auth != null && auth.token.email_verified == true && auth.token.email == 'aliwasn12345@gmail.com'",
+        ".write": "auth != null && auth.token.email_verified == true && auth.token.email == 'aliwasn12345@gmail.com'",
+        "$sid": {
+          ".read": "auth != null && auth.token.email_verified == true && (auth.token.email == 'aliwasn12345@gmail.com' || root.child('authMap').child(auth.uid).child('studentId').val() == $sid)",
+          ".write": "auth != null && auth.token.email_verified == true && auth.token.email == 'aliwasn12345@gmail.com'"
+        }
+      },
+      "names": {
+        ".read": "auth != null && auth.token.email_verified == true && auth.token.email == 'aliwasn12345@gmail.com'",
+        ".write": "auth != null && auth.token.email_verified == true && auth.token.email == 'aliwasn12345@gmail.com'"
+      },
+      "log": {
+        ".read": "auth != null && auth.token.email_verified == true && auth.token.email == 'aliwasn12345@gmail.com'",
+        ".write": "auth != null && auth.token.email_verified == true && auth.token.email == 'aliwasn12345@gmail.com'",
+        "$sid": {
+          ".read": "auth != null && auth.token.email_verified == true && (auth.token.email == 'aliwasn12345@gmail.com' || root.child('authMap').child(auth.uid).child('studentId').val() == $sid)",
+          ".write": "auth != null && auth.token.email_verified == true && (auth.token.email == 'aliwasn12345@gmail.com' || root.child('authMap').child(auth.uid).child('studentId').val() == $sid)"
+        }
+      },
+      "tn": {
+        ".read": "auth != null && auth.token.email_verified == true && auth.token.email == 'aliwasn12345@gmail.com'",
+        ".write": "auth != null && auth.token.email_verified == true && auth.token.email == 'aliwasn12345@gmail.com'",
+        "$sid": {
+          ".read": "auth != null && auth.token.email_verified == true && (auth.token.email == 'aliwasn12345@gmail.com' || root.child('authMap').child(auth.uid).child('studentId').val() == $sid)",
+          ".write": "auth != null && auth.token.email_verified == true && (auth.token.email == 'aliwasn12345@gmail.com' || root.child('authMap').child(auth.uid).child('studentId').val() == $sid)"
+        }
+      },
+      "pn": {
+        ".read": "auth != null && auth.token.email_verified == true && auth.token.email == 'aliwasn12345@gmail.com'",
+        ".write": "auth != null && auth.token.email_verified == true && auth.token.email == 'aliwasn12345@gmail.com'",
+        "$sid": {
+          ".read": "auth != null && auth.token.email_verified == true && auth.token.email == 'aliwasn12345@gmail.com'",
+          ".write": "auth != null && auth.token.email_verified == true && (auth.token.email == 'aliwasn12345@gmail.com' || (root.child('authMap').child(auth.uid).child('studentId').val() == $sid && root.child('authMap').child(auth.uid).child('role').val() == 'parent'))"
+        }
+      },
+      "tchn": {
+        ".read": "auth != null && auth.token.email_verified == true && auth.token.email == 'aliwasn12345@gmail.com'",
+        ".write": "auth != null && auth.token.email_verified == true && auth.token.email == 'aliwasn12345@gmail.com'"
+      },
+      "backups": {
+        ".read": "auth != null && auth.token.email_verified == true && auth.token.email == 'aliwasn12345@gmail.com'",
+        ".write": "auth != null && auth.token.email_verified == true && auth.token.email == 'aliwasn12345@gmail.com'"
+      }
+    }
+  }
+}
